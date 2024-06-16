@@ -4,9 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 
 import { TasksTable } from "./components/TasksTable";
 
-const Index = ({ auth, tasks, queryParams = null }) => {
-  queryParams = queryParams || {};
-
+const Index = ({ auth, tasks, queryParams }) => {
   return (
     <AuthenticatedLayout
       user={auth.user}

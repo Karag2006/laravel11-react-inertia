@@ -7,13 +7,21 @@ import TextInput from "@/Components/TextInput";
 import { TableHeading } from "@/Components/TableHeading";
 import { Pagination } from "@/Components/Pagination";
 
-export const TasksTable = ({ tasks, queryParams }) => {
+export const TasksTable = ({
+  tasks,
+  queryParams = null,
+  routeName = "task.index",
+  routeParam,
+}) => {
+  queryParams = queryParams || {};
   const taskStatusKeys = Object.keys(TASK_STATUS_TEXT_MAP);
   const searchFieldChanged = (fieldName, value) => {
     if (value) queryParams[fieldName] = value;
     else delete queryParams[fieldName];
 
-    router.get(route("task.index"), queryParams);
+    router.get(route(routeName, routeParam), queryParams, {
+      preserveScroll: true,
+    });
   };
 
   const onKeyPress = (fieldName, event) => {
@@ -34,7 +42,9 @@ export const TasksTable = ({ tasks, queryParams }) => {
       queryParams.sort_direction = "asc";
     }
 
-    router.get(route("task.index"), queryParams);
+    router.get(route(routeName, routeParam), queryParams, {
+      preserveScroll: true,
+    });
   };
 
   return (
@@ -52,6 +62,11 @@ export const TasksTable = ({ tasks, queryParams }) => {
             <TableHeading
               fieldName="image_path"
               fieldLabel="Image"
+              sortable={false}
+            />
+            <TableHeading
+              fieldName="project.name"
+              fieldLabel="Project Name"
               sortable={false}
             />
             <TableHeading
@@ -98,6 +113,7 @@ export const TasksTable = ({ tasks, queryParams }) => {
           <tr className="text-nowrap">
             <th className="px-3 py-3"></th>
             <th className="px-3 py-3"></th>
+            <th className="px-3 py-3"></th>
             <th className="px-3 py-3">
               <TextInput
                 className="w-full"
@@ -140,6 +156,7 @@ export const TasksTable = ({ tasks, queryParams }) => {
               <td className="px-3 py-2">
                 <img className="w-[60px]" src={task.image_path} alt="" />
               </td>
+              <td className="px-3 py-2">{task.project.name}</td>
               <td className="px-3 py-2">{task.name}</td>
               <td className="px-3 py-2">
                 <span
