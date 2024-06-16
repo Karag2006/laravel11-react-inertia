@@ -3,7 +3,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import { TasksTable } from "../Task/components/TasksTable";
 
-const Show = ({ auth, project, tasks, queryParams }) => {
+const Show = ({ auth, project, projects, queryParams }) => {
   return (
     <AuthenticatedLayout
       user={auth.user}
@@ -84,7 +84,7 @@ const Show = ({ auth, project, tasks, queryParams }) => {
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 text-gray-900 dark:text-gray-100">
               <TasksTable
-                tasks={tasks}
+                projects={projects}
                 queryParams={queryParams}
                 routeName="project.show"
                 routeParam={project.id}

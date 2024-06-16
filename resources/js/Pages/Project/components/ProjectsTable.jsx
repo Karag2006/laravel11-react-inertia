@@ -7,7 +7,7 @@ import TextInput from "@/Components/TextInput";
 import { TableHeading } from "@/Components/TableHeading";
 import { Pagination } from "@/Components/Pagination";
 
-export const TasksTable = ({
+export const ProjectsTable = ({
   projects,
   queryParams = null,
   routeName = "project.index",
@@ -65,11 +65,6 @@ export const TasksTable = ({
               sortable={false}
             />
             <TableHeading
-              fieldName="project.name"
-              fieldLabel="Project Name"
-              sortable={false}
-            />
-            <TableHeading
               fieldName="name"
               fieldLabel="Name"
               sort_field={queryParams.sort_field}
@@ -113,7 +108,6 @@ export const TasksTable = ({
           <tr className="text-nowrap">
             <th className="px-3 py-3"></th>
             <th className="px-3 py-3"></th>
-            <th className="px-3 py-3"></th>
             <th className="px-3 py-3">
               <TextInput
                 className="w-full"
@@ -153,7 +147,6 @@ export const TasksTable = ({
               <td className="px-3 py-2">
                 <img className="w-[60px]" src={project.image_path} alt="" />
               </td>
-              <td className="px-3 py-2">{project.project.name}</td>
               <td className="px-3 py-2">{project.name}</td>
               <td className="px-3 py-2">
                 <span

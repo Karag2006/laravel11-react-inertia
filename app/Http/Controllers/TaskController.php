@@ -27,13 +27,13 @@ class TaskController extends Controller
             $query->where("status", request("status"));
         }
 
-        $tasks = $query
+        $projects = $query
             ->orderBy($sortField, $sortDirection)
             ->paginate(10)
             ->onEachSide(1);
 
         return inertia("Task/Index", [
-            'tasks' => TaskResource::collection($tasks),
+            'projects' => TaskResource::collection($projects),
             'queryParams' => request()->query() ?: null,
         ]);
     }
@@ -57,7 +57,7 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Task $task)
+    public function show(Task $project)
     {
         //
     }
@@ -65,7 +65,7 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Task $task)
+    public function edit(Task $project)
     {
         //
     }
@@ -73,7 +73,7 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(UpdateTaskRequest $request, Task $project)
     {
         //
     }
@@ -81,7 +81,7 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task)
+    public function destroy(Task $project)
     {
         //
     }
