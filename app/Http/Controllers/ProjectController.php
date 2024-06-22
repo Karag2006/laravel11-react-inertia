@@ -60,7 +60,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        $query = $project->projects();
+        $query = $project->tasks();
 
         $sortField = request('sort_field', 'created_at');
         $sortDirection = request('sort_direction', 'desc');
@@ -73,14 +73,14 @@ class ProjectController extends Controller
             $query->where("status", request("status"));
         }
 
-        $projects = $query
+        $tasks = $query
             ->orderBy($sortField, $sortDirection)
             ->paginate(10)
             ->onEachSide(1);
 
         return inertia('Project/Show', [
             'project' => new ProjectResource($project),
-            'projects' => TaskResource::collection($projects),
+            'tasks' => TaskResource::collection($tasks),
             'queryParams' => request()->query() ?: null,
         ]);
     }
